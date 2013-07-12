@@ -1,0 +1,46 @@
+sudo service lightdm stop
+
+###
+
+sudo apt-get update
+sudo apt-get dist-upgrade
+
+###
+
+cd /tmp
+
+wget https://github.com/GM-Script-Writer-62850/Ubuntu-Mainline-Kernel-Updater/a$
+
+unzip Ubuntu-Mainline-Kernel-Updater.zip
+
+bash Ubuntu-Mainline-Kernel-Updater-master/install
+
+KernelUpdateChecker -no-rc
+
+/tmp/kernel-update
+
+###
+
+sudo apt-get install nvidia-experimental-310
+
+sudo /sbin/lsmod | grep nvidia
+
+# sudo depmod -a
+
+# sudo modprobe nvidia_xxxxxxxx
+
+###
+
+sudo /etc/init.d/lightdm restart
+
+###
+
+sudo nvidia-xconfig
+
+###
+
+sudo nano /etc/default/grub
+
+# GRUB_CMDLINE_LINUX_DEFAULT="nomodeset" 
+
+
