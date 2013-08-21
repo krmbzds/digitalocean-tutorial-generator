@@ -1,7 +1,7 @@
 DigitalOcean Tutorial Generator :droplet:
 =========================================
 
-A collection of useful python scripts that output customized & copy-paste'able bash commands. Handy to use after setting up DigitalOcean Droplets. Intended to use with ```32-bit Ubuntu 12.04 LTS Server```  installations.
+Intended to use with ```32-bit Ubuntu 12.04 LTS Server```  installations.
 
 
 ## Directory Listing
