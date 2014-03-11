@@ -3,28 +3,17 @@
 from random_mysql_pass import password_generator
 password = password_generator()
 
-terminate = 0
+ubuntu_version = input("Ubuntu version [10, 12, 13]: ")
+architecture   = input("Architecture [32, 64]: ")
+ovpn_version   = input("OpenVPN Access Server Version [2.0.3]: ")
+ip_address     = input("IP Address of Cloud Server: ")
 
-# Constants;
-version = '1.8.4'
-fln_32bit = 'openvpn-as-' + version + '-Ubuntu10.i386.deb'
-fln_64bit = 'openvpn-as-' + version + '-Ubuntu10.amd_64.deb'
-url_32bit = 'http://swupdate.openvpn.org/as/' + fln_32bit
-url_64bit = 'http://swupdate.openvpn.org/as/' + fln_64bit
+if len(ovpn_version) == 0: ovpn_version = '2.0.3' 
 
-# Input Architecture and IP Address
-arch = input("Architecture [32bit/64bit]: ")
-ip_address = input("IP Address of Cloud Server: ")
-
-if ("32" in arch) and not ("64" in arch):
-    arch = url_32bit
-    dpkg = fln_32bit
-elif "64" in arch and not ("32" in arch):
-    arch = url_64bit
-    dpkg = fln_64bit
-else:
-    terminate = 1
-
+arch_suffix = {'32':'.i386.deb', '64':'.amd_64.deb'}
+pfix_url = 'http://swupdate.openvpn.org/as/'
+filename = 'openvpn-as-' + ovpn_version + '-Ubuntu' + ubuntu_version + arch_suffix[architecture]
+full_url = pfix_url + filename
 
 output = """
 
@@ -32,10 +21,10 @@ output = """
 sudo su
 
 # Fetch package
-sudo wget {arch}
+sudo wget {full_url}
 
 # Install
-dpkg -i "{dpkg}"
+dpkg -i "{filename}"
 
 # Change Pass of 'openvpn' User
 sudo passwd openvpn
@@ -51,12 +40,6 @@ sudo passwd openvpn
 
 """
 
-if terminate == 0:
-    print(output.format(arch=arch, dpkg=dpkg, password=password, ip_address=ip_address))
-elif terminate == 1:
-    raise("Wrong Input")
-else:
-    raise("Unknown Error")
+print(output.format(full_url=full_url, filename=filename, password=password, ip_address=ip_address))
 
-if password:
-    del(password)
+# I've got 99 problems but a proxy ain't one
