@@ -1,14 +1,14 @@
-''' How to Install OpenVPN Access Server on Ubuntu 12.04 '''
+''' How to Install OpenVPN Access Server on Ubuntu 14.04.4 '''
 
 from random_mysql_pass import password_generator
 password = password_generator()
 
-ubuntu_version = input("Ubuntu version [10, 12, 13]: ")
+ubuntu_version = input("Ubuntu version [10, 12, 13, 14]: ")
 architecture   = input("Architecture [32, 64]: ")
-ovpn_version   = input("OpenVPN Access Server Version [2.0.3]: ")
+ovpn_version   = input("OpenVPN Access Server Version [2.0.25]: ")
 ip_address     = input("IP Address of Cloud Server: ")
 
-if len(ovpn_version) == 0: ovpn_version = '2.0.3' 
+if len(ovpn_version) == 0: ovpn_version = '2.0.25' 
 
 arch_suffix = {'32':'.i386.deb', '64':'.amd_64.deb'}
 pfix_url = 'http://swupdate.openvpn.org/as/'
